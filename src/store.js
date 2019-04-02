@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: 0,
-    mapStateValue: 'mapStateValue'
+    mapStateValue: 'mapStateValue',
+    ajaxData: 'test'
   },
   getters: {
     countPlus (state) {
@@ -34,19 +35,22 @@ export default new Vuex.Store({
     },
     alert (state,payload) {
       window.alert(payload+' '+state.count+' 次');
+    },
+    setAjaxData (state,payload) {
+      state.ajaxData = payload;
     }
   },
   actions: {
     increase3Action (context) {
       context.commit('increase3',{
-        price: 100,
-        number: 5
+        price: 1,
+        number: 1
       });
     },
     asyncAlert (context) {
       window.setTimeout(function () {
         context.commit('alert','Header组件中的按钮点击了');
-      },3000);
+      },300);
     }
   }
 })

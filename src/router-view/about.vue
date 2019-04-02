@@ -1,5 +1,7 @@
 <template lang="html">
-
+  <div id="router-view">
+    <h1>关于</h1>
+  </div>
 </template>
 
 <script>

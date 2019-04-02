@@ -1,11 +1,13 @@
 <template lang="html">
-  <div id="footer">
+  <div id="footer" v-if="showFooter">
+    <h1>Footer</h1>
     <p>从Header组件传递过来的数据：{{msgFromHeader}}</p>
     <p>Header组件中的按钮点击了 {{clickCount}} 次</p>
     <p>按钮点击数自增后的值：{{countPlus}}</p>
     <p>按钮点击数自增两次后的值：{{countPlusPlus}}</p>
     <p>mapState的值：{{mapStateValue}}</p>
     <p>mapGetters的值：{{mapGettersValue1}} {{mapGettersValue2}}</p>
+    <p>显示store中存储的ajax数据：{{$store.state.ajaxData}}</p>
   </div>
 </template>
 
@@ -16,7 +18,8 @@
   export default {
     data () {
       return {
-        msgFromHeader: ''
+        msgFromHeader: '',
+        showFooter: true,
       };
     },
     computed: {
@@ -63,14 +66,41 @@
 
           console.log(this.$store.state.count);
         });
+      },
+      getAjaxData () {
+        this.$axios.get('https://www.gdszip.com/wp-content/themes/gdszip/data/appdataver-json-cors.php').then( (response) => {
+          console.log(response);
+          if (response.status === 200) {
+            this.$store.commit('setAjaxData',response.data.optionVer);
+          }
+        });
       }
+    },
+    created() {
+      console.log('Footer组件已创建');
     },
     mounted () {
       console.log(this);
       this.recieveMessage();
-    }
+      this.getAjaxData();
+
+      EventBus.$on('hideFooter', () => {
+        this.showFooter = false;
+      });
+
+    },
+    updated() {
+      console.log('Footer组件已重新渲染');
+    },
+    destroyed() {
+      console.log('Footer组件已销毁');
+    },
   }
 </script>
 
 <style lang="css">
+  #footer {
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
 </style>
