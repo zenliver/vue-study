@@ -16,6 +16,11 @@
   import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
 
   export default {
+    props: {
+      prop1: {
+        type: String
+      }
+    },
     data () {
       return {
         msgFromHeader: '',
@@ -74,7 +79,10 @@
             this.$store.commit('setAjaxData',response.data.optionVer);
           }
         });
-      }
+      },
+      Alert() {
+        alert('TEST');
+      },
     },
     created() {
       console.log('Footer组件已创建');
