@@ -4,7 +4,7 @@
     <p>
       <button type="button" name="button" @click="callFooterAlert">执行Footer中的alert</button>
     </p>
-    <Footer ref="footer" :prop1="prop1"></Footer>
+    <Footer ref="footer" :testFunc="testFunc"></Footer>
   </div>
 </template>
 
@@ -20,7 +20,9 @@
     },
     data() {
       return {
-        prop1: 'prop1'
+        testFunc: function () {
+          alert('这是通过props传入的函数执行的结果');
+        },
       };
     },
     methods: {

@@ -17,9 +17,9 @@
 
   export default {
     props: {
-      prop1: {
-        type: String
-      }
+      testFunc: {
+        type: Function
+      },
     },
     data () {
       return {
@@ -91,6 +91,8 @@
       console.log(this);
       this.recieveMessage();
       this.getAjaxData();
+
+      this.testFunc();
 
       EventBus.$on('hideFooter', () => {
         this.showFooter = false;
