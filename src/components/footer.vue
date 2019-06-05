@@ -92,7 +92,7 @@
       this.recieveMessage();
       this.getAjaxData();
 
-      this.testFunc();
+      // this.testFunc();
 
       EventBus.$on('hideFooter', () => {
         this.showFooter = false;

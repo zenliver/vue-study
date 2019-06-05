@@ -6,6 +6,9 @@ import store from './store'
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
+import VCharts from 'v-charts';
+Vue.use(VCharts);
+
 Vue.config.productionTip = false
 
 new Vue({

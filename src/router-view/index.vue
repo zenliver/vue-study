@@ -34,5 +34,8 @@
         console.log(this.$refs.footer.prop1);
       },
     },
+    mounted () {
+      window.localStorage.testItem = 'TEST';
+    },
   }
 </script>

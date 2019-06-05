@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link :to="{ name: 'Index', params: {} }">首页</router-link>
       <router-link :to="{ name: 'About', params: {} }">关于</router-link>
+      <router-link :to="{ name: 'echarts', params: {} }">ECharts</router-link>
     </div>
     <h1>Header</h1>
     <p>
