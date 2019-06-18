@@ -1,24 +1,32 @@
 <!-- ECharts学习 -->
 <template lang="html">
   <div id="echarts_study">
-    <VeLine :data="chartData" :settings="chartSettings" :extend="extend"></VeLine>
+    <VcLine :data="chartData" :settings="chartSettings" :extend="extend"></VcLine>
+    <VcRing :data="chartData2" :settings="chartSettings2"></VcRing>
   </div>
 </template>
 
 <script>
-  import VeLine from 'v-charts/lib/line.common.js';
+  import VcLine from 'v-charts/lib/line.common.js';
+  import VcRing from 'v-charts/lib/ring.common.js';
 
   export default {
     components: {
-      VeLine
+      VcLine,
+      VcRing
     },
     data () {
       return {
         chartSettings: {
-          dimension: ['日期'],
-          metrics: ['销售量','成交额','成交率'],
+          dimension: ['date'],
+          metrics: ['saleNum','saleAmount','saleRate'],
+          labelMap: {
+            'saleNum': '成交数',
+            'saleAmount': '销售额',
+            'saleRate': '成交率'
+          },
           axisSite: {
-            right: ['成交率']
+            right: ['saleRate']
           },
           yAxisType: ['KMB','percent'],
           yAxisName: ['额度','百分比'],
@@ -28,33 +36,54 @@
           'xAxis.0.axisLabel.rotate': 45
         },
         chartData: {
-          columns: ['日期','销售量','成交额','成交率'],
+          columns: ['date','saleNum','saleAmount','saleRate'],
           rows: [
             {
-              '日期': '1月1日',
-              '销售量': 24242,
-              '成交额': 242420,
-              '成交率': 0.25
+              'date': '1月1日',
+              'saleNum': 24242,
+              'saleAmount': 242420,
+              'saleRate': 0.25
             },
             {
-              '日期': '1月2日',
-              '销售量': 235255,
-              '成交额': 2352550,
-              '成交率': 0.36
+              'date': '1月2日',
+              'saleNum': 235255,
+              'saleAmount': 2352550,
+              'saleRate': 0.36
             },
             {
-              '日期': '1月3日',
-              '销售量': 74942,
-              '成交额': 749420,
-              '成交率': 0.31
+              'date': '1月3日',
+              'saleNum': 74942,
+              'saleAmount': 749420,
+              'saleRate': 0.31
             },
             {
-              '日期': '1月4日',
-              '销售量': 54242,
-              '成交额': 542420,
-              '成交率': 0.18
+              'date': '1月4日',
+              'saleNum': 54242,
+              'saleAmount': 542420,
+              'saleRate': 0.18
             }
           ],
+        },
+        chartData2: {
+          columns: ['option','num'],
+          rows: [
+            {
+              'option': '已读',
+              'num': 1250
+            },
+            {
+              'option': '未读',
+              'num': 630
+            }
+          ],
+        },
+        chartSettings2: {
+          dimension: 'option',
+          metrics: 'num',
+          label: {
+            show: true,
+            formatter: '{b}: {d}%'
+          },
         },
       };
     },
